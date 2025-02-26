@@ -3,13 +3,14 @@
 #include <locale.h> //biblioteca de alocação de texto por região
 #include <string.h> //biblioteca responsável por cuidar das strings
 
-void registro()
+int registro()
 {
     char arquivo[40];
     char cpf[20];
     char nome[40];
     char sobrenome[40];
     char cargo[40];
+    int choice = 2;
 
     printf("Você escolheu 'Registrar nomes'\n");
 
@@ -31,12 +32,9 @@ void registro()
     file = fopen(arquivo, "w");                                //cria o arquivo
     fprintf(file, "%s,%s,%s,%s", cpf, nome, sobrenome, cargo); //salvo o valor da variavel
     fclose(file);                                              //fecha o arquivo
-
-    system("clear");
-    printf("Usuário %s criado com sucesso!\n", cpf);
 }
 
-void consulta()
+int consulta()
 {
     char cpf[20];
     char conteudo[200];
@@ -61,11 +59,9 @@ void consulta()
             printf("\n\n");
         }
     }
-
-    //criar alternativa pra consultar outro cpf ou  voltar para o menu
 }
 
-void deletar()
+int deletar()
 {
     char cpf[40];
 
@@ -81,7 +77,6 @@ void deletar()
     else
         printf("\nO usuário %s não se encontra no sistema\n", cpf);
 
-    //TODO --> criar alternativa pra deletar outro cpf ou  voltar para o menu
 }
 
 int main()
@@ -129,8 +124,6 @@ int main()
             printf("Essa opção não existe\n");
             break;
         }
-
-        //printf("Deseja Voltar ao menu peincipoal?\n"); //y/n prompt
         
         system("read -n 1 -s -p \"\nPressione qualquer tecla pra voltar ao menu inicial...\"; echo"); // system("pause") nao funciona fora do Windows. Achei essa solucao. Nao sei o que significa, mas funciona.
     }
